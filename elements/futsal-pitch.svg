@@ -1,83 +1,85 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4500 2500">
+<svg viewBox="0 0 1150 780" version="1.1" xmlns="http://www.w3.org/2000/svg">
 	<style>
-		.player {
-			fill: red;
-			cursor: hand;
-		}		
-		.player text {
-			fill: black;
-		}		
-		.player text.number {
-			fill: white;
-		}		
+		$color-turf: #53c653;
+$color-clay: #7f7c5d;
+$color-line: #ffffff;
+
+svg {
+  width: 100%;
+  & .turf {
+    fill: $color-turf;
+  }
+  & .cell-free {
+    fill: $color-clay;
+  }
+  & .cell-reserved,
+  & .cell-free:hover {
+    fill: url(#striped);
+  }
+  & .cell-sold {
+    fill: transparent;
+  }
+  & .stripe {
+    stroke: $color-clay;
+    stroke-width: 1;
+  }
+  & .line {
+    stroke: $color-line;
+    stroke-width: 1.2;
+    fill: none;
+  }
+  & .curve {
+    stroke: $color-line;
+    stroke-width: 1.2;
+    fill: none;
+  }
+  & .dot {
+    stroke: $color-line;
+    fill: $color-line;
+    r: 1.5;
+  }
+  & .goal {
+    stroke: $color-line;
+    stroke-width: 0.75;
+    fill: url(#goal);
+  }
+  & .goal-stripe {
+    stroke: $color-line;
+    stroke-width: 1;
+  }
+}
+
 	</style>
-	<pattern id="goal-net" x="0" y="0" width="20" height="20" stroke="black" patternUnits="userSpaceOnUse">
-		<line x1="0" x2="20" y1="0" y2="20" />
-		<line x1="20" x2="00" y1="0" y2="20" />
-	</pattern>
-	<g id="background">
-		<rect width="4500" height="2500" fill="#b7b7b7" />
-	</g>
-	<g id="pitch" transform="translate(250 200)" fill="#0280c6" stroke="white" stroke-width="8">
-		<rect width="4000" height="2000" />
-		<line x1="2000" x2="2000" y1="0" y2="2000" />
-		<circle r="300" cx="2000" cy="1000" fill="none" />
-		<circle r="12" cx="2000" cy="1000" fill="white" stroke-width="0" />
-		<g id="corner_marks">
-			<path fill="none" d="M25,0 a25,25 0 0,1 -25,25" />
-			<path fill="none" d="M4000,25 a25,25 0 0,1 -25,-25" />
-			<path fill="none" d="M0,1975 a25,25 0 0,1 25,25" />
-			<path fill="none" d="M3975,2000 a25,25 0 0,1 25,-25" />
-		</g>
-		<g id="substitition-zones">
-			<line x1="1000" x2="1000" y1="-48" y2="32" />
-			<line x1="1500" x2="1500" y1="-48" y2="32" />
-			<line x1="2500" x2="2500" y1="-48" y2="32" />
-			<line x1="3000" x2="3000" y1="-48" y2="32" />
-		</g>
-		<g id="left">
-			<line x1="600" x2="600" y1="842" y2="1158" />
-			<circle r="12" cx="600" cy="1000" fill="white" stroke-width="0" />
-			<path fill="none" d="M0,242 a600,600 0 0,1 600,600" />
-			<path fill="none" d="M600,1158 a600,600 0 0,1 -600,600" />
-			<line x1="0" x2="-40" y1="500" y2="500" />
-			<line x1="0" x2="-40" y1="1500" y2="1500" />
-			<g id="goal-left">
-				<rect width="100" height="300" x="-100" y="850" fill="url(#goal-net)" stroke="#777777" stroke-width="4" />
-				<line x1="0" x2="0" y1="850" y2="1150" />
-				<line x1="0" x2="0" y1="850" y2="1150" stroke="red" stroke-dasharray="20" />
-			</g>
-		</g>
-		<g id="left-penalty" fill="white" stroke-width="0">
-			<rect width="16" height="16" x="992" y="492" />
-			<circle r="12" cx="1000" cy="1000"/>
-			<rect width="16" height="16" x="992" y="1492" />
-		</g>
-		<g id="right">
-			<line x1="3400" x2="3400" y1="842" y2="1158" />
-			<circle r="12" cx="3400" cy="1000" fill="white" stroke-width="0" />
-			<path fill="none" d="M3400,842 a600,600 0 0,1 600,-600" />
-			<path fill="none" d="M3400,1158 a600,600 0 0,0 600,600" />
-			<line x1="4000" x2="4040" y1="500" y2="500" />
-			<line x1="4000" x2="4040" y1="1500" y2="1500" />
-			<g id="goal-right">
-				<rect width="100" height="300" x="4000" y="850" fill="url(#goal-net)" stroke="#777777" stroke-width="4" />
-				<line x1="4000" x2="4000" y1="850" y2="1150" />
-				<line x1="4000" x2="4000" y1="850" y2="1150" stroke="red" stroke-dasharray="20" />
-			</g>
-		</g>
-		<g id="right-penalty" fill="white" stroke-width="0">
-			<rect width="16" height="16" x="2992" y="492" />
-			<circle r="12" cx="3000" cy="1000" />
-			<rect width="16" height="16" x="2992" y="1492" />
-		</g>
-	</g>
-	<g id="players" transform="translate(250 2250)" font-size="50">
-		<g id="player-01" text-anchor="middle" class="player">
-			<circle r="50" cx="50" cy="70" />
-			<text class="number" x="50" y="70" dominant-baseline="central">0</text>
-			<text x="50">Goran Test</text>
-		</g>
-	</g>
-	<g id="balls"></g>
+		
+  <defs>
+    <pattern id="striped" patternUnits="userSpaceOnUse" width="4" height="4">
+      <rect x="0" y="0" width="4" height="4" fill="transparent" />
+      <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" class="stripe" />
+    </pattern>
+    <pattern id="goal" patternUnits="userSpaceOnUse" width="2" height="2">
+      <rect x="0" y="0" width="2" height="2" fill="transparent" />
+      <line x1="0" y1="0" x2="1" y2="0" class="goal-stripe" />
+      <line x1="1" y1="0" x2="1" y2="1" class="goal-stripe" />
+    </pattern>
+  </defs>
+  <!-- Außenfeld -->
+  <path d="M 0,0 h1150 v780 h-1150z" class="turf" />
+  <!-- Außenlinien -->
+  <polyline points="575,730 575,50 1100,50 1100,730 50,730 50,50 575,50" class="line" />
+  <!-- Anstoßkreis -->
+  <circle cx="575" cy="390" class="line" r="91.5" />
+  <!-- Anstoßpunkt -->
+  <circle cx="575" cy="390" class="dot" />
+  <!-- Elfmeterpunkte -->
+  <circle cx="160" cy="390" class="dot" />
+  <circle cx="990" cy="390" class="dot" />
+  <path d="M251.5,390 a91.5,91.5 0 0,0 -36.5,-73.4 M251.5,390 a91.5,91.5 0 0,1 -36.5,73.4 M898.5,390 a91.5,95.5 0 0,0 36.5,73.4 M898.5,390 a91.5,95.5 0 0,1 36.5,-73.4" class="line" />
+  <!-- Ecken -->
+  <path d="M 50 60 Q 60 60 60 50 M 1090 50 Q 1090 60 1100 60 M 50 720 Q 60 720 60 730 M 1090 730 Q 1090 720 1100 720" class="line" />
+  <!-- Tore -->
+  <polyline points="50,426.6 35,426.6 35,353.4 50,353.4" class="goal" />
+  <polyline points="1100,426.6 1115,426.6 1115,353.4 1100,353.4" class="goal" />
+  <!-- Torraum / Strafraum-->
+  <polyline points="50,481.6 105,481.6 105,298.4 50,298.4 50,591.6 215,591.6 215,188.4 50,188.4" class="line" />
+  <polyline points="1100,481.6 1045,481.6 1045,298.4 1100,298.4 1100,591.6 935,591.6 935,188.4 1100,188.4" class="line" />
 </svg>
